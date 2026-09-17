@@ -2,7 +2,7 @@
 <html lang="hu">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Lorem ipsum</title>
     <link rel="stylesheet" href="style.css" />
     <style>
@@ -29,6 +29,38 @@
         padding: 0;
         box-sizing: border-box;
         background: transparent;
+      }
+
+      .printing-gap-band {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 1000px;
+        padding: 32px;
+        box-sizing: border-box;
+      }
+
+      .printing-gap-card {
+        width: min(520px, 100%);
+        height: 400px;
+        padding: 32px;
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+        box-sizing: border-box;
+      }
+
+      .printing-gap-card h2 {
+        margin: 0 0 16px;
+        font-size: clamp(1.3rem, 2.5vw, 2rem);
+      }
+
+      .printing-gap-card p {
+        margin: 0;
+        font-family: var(--font-text);
+        font-size: 14px;
+        line-height: 1.7;
+        color: #333333;
       }
 
       .site-header .header-inner {
@@ -1103,95 +1135,12 @@
       </div>
     </section>
 
-    <section class="about-section home-divider-band printing-about" aria-label="Lorem ipsum">
-      <div class="container">
-        <div class="about-body">
-          <div class="about-content home-about-content">
-            <div class="printing-feature-reveal" id="feature-reveal-1" aria-hidden="true">
-              <div class="printing-feature-grid" aria-label="Lorem ipsum">
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed lorem posuere volutpat.</p><div class="printing-feature-card-media"><img class="printing-feature-card-inline-image" src="portfolio/nyportfolio/flexi1.jpg" alt="Lorem ipsum" /></div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor.</p><div class="printing-feature-card-media"><img class="printing-feature-card-inline-image" src="portfolio/nyportfolio/miniatur.jpg" alt="Lorem ipsum" /></div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quam felis, ultricies nec.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-              </div>
-            </div>
-
-            <div class="printing-feature-reveal" id="feature-reveal-2" aria-hidden="true">
-              <div class="printing-feature-grid" aria-label="Lorem ipsum">
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Sed consequat, massa sed pulvinar.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed lorem posuere volutpat.</p><div class="printing-feature-card-media"><img class="printing-feature-card-inline-image" src="portfolio/nyportfolio/flexi1.jpg" alt="Lorem ipsum" /></div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor.</p><div class="printing-feature-card-media"><img class="printing-feature-card-inline-image" src="portfolio/nyportfolio/miniatur.jpg" alt="Lorem ipsum" /></div></div></article>
-              </div>
-            </div>
-
-            <div class="printing-feature-reveal" id="feature-reveal-3" aria-hidden="true">
-              <div class="printing-feature-grid" aria-label="Lorem ipsum">
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper ultricies nisi.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget dui. Etiam rhoncus.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sagittis magna.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-              </div>
-            </div>
-
-            <div class="printing-feature-reveal" id="feature-reveal-4" aria-hidden="true">
-              <div class="printing-feature-grid" aria-label="Lorem ipsum">
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec odio et ante tincidunt tempus.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate eleifend sapien.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-                <article class="printing-feature-card"><div class="printing-feature-card-inner"><h3 class="printing-feature-card-title">Lorem ipsum</h3><p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra nulla ut metus varius laoreet.</p><div class="printing-feature-card-media printing-feature-card-media--placeholder">Lorem ipsum</div></div></article>
-              </div>
-            </div>
-
-            <article class="printing-services-title-card">
-              <h2 class="printing-services-title">Lorem ipsum</h2>
-            </article>
-            <div class="printing-process-cards-frame">
-            <svg class="printing-process-arrows" aria-hidden="true" preserveAspectRatio="none">
-              <defs>
-                <marker id="printing-process-arrowhead" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto" markerUnits="userSpaceOnUse">
-                  <path d="M 0 0 L 5 2.5 L 0 5 z" fill="#8A7E7A"></path>
-                </marker>
-              </defs>
-              <line data-arrow="top" marker-end="url(#printing-process-arrowhead)"></line>
-              <line data-arrow="middle" marker-end="url(#printing-process-arrowhead)"></line>
-              <line data-arrow="bottom" marker-end="url(#printing-process-arrowhead)"></line>
-            </svg>
-            <article class="printing-feature-card printing-feature-card-wide printing-feature-card-wide-rounded printing-feature-card-wide--parts-placeholder" aria-label="Lorem ipsum">
-              <div class="printing-process-square printing-process-square--left" tabindex="0" role="button" aria-label="Lorem ipsum"></div>
-              <div class="printing-process-square printing-process-square--right-top" tabindex="0" role="button" aria-label="Lorem ipsum"></div>
-              <div class="printing-process-square printing-process-square--right-middle" tabindex="0" role="button" aria-label="Lorem ipsum"></div>
-              <div class="printing-process-square printing-process-square--right-bottom" tabindex="0" role="button" aria-label="Lorem ipsum"></div>
-              <div class="printing-feature-card-inner">
-                <h3 class="printing-feature-card-title">Lorem ipsum</h3>
-                <ol class="printing-feature-card-text">
-                  <li><strong>Lorem ipsum</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                  <li><strong>Lorem ipsum</strong> Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</li>
-                  <li><strong>Lorem ipsum</strong> Aenean vulputate eleifend tellus. Aenean leo ligula.</li>
-                  <li><strong>Lorem ipsum</strong> Phasellus viverra nulla ut metus varius laoreet.</li>
-                  <li><strong>Lorem ipsum</strong> Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</li>
-                </ol>
-              </div>
-            </article>
-            <article class="printing-feature-card printing-feature-card-wide printing-feature-card-wide-rounded printing-feature-card-wide--parts-placeholder printing-feature-card-wide--step-two" aria-label="Lorem ipsum">
-              <img class="printing-marker-pattern" src="vektor1.ai" alt="" aria-hidden="true" />
-              <img class="printing-marker-pattern printing-marker-pattern--second" src="vektor2.ai" alt="" aria-hidden="true" draggable="false" />
-              <img class="printing-marker-pattern printing-marker-pattern--third" src="vektor3.ai" alt="" aria-hidden="true" />
-              <img class="printing-marker-pattern printing-marker-pattern--fourth" src="vektor4.ai" alt="" aria-hidden="true" draggable="false" />
-              <img class="printing-marker-pattern printing-marker-pattern--fifth" src="vektor4.ai" alt="" aria-hidden="true" draggable="false" />
-              <img class="printing-marker-pattern printing-marker-pattern--pencil" src="ceruza1.svg" alt="" aria-hidden="true" />
-              <div class="printing-feature-card-inner">
-                <h3 class="printing-feature-card-title">Lorem ipsum</h3>
-                <p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
-              </div>
-            </article>
-            <article class="printing-feature-card printing-feature-card-wide printing-feature-card-wide-rounded printing-feature-card-wide--parts-placeholder printing-feature-card-wide--step-three" aria-label="Lorem ipsum">
-              <div class="printing-feature-card-inner">
-                <h3 class="printing-feature-card-title">Lorem ipsum</h3>
-                <p class="printing-feature-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
-              </div>
-            </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="printing-gap-band">
+      <article class="printing-gap-card">
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed lorem posuere volutpat.</p>
+      </article>
+    </div>
 
     <footer class="site-footer" id="contact">
       <div class="container footer-grid">
