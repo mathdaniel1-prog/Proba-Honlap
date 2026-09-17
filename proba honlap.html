@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Lorem ipsum</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        --line-size: 1px;
+        --line-color: #000000;
+        --printing-surface: #E6E2DF;
+      }
+
+      body {
+        margin: 0;
+        background: var(--printing-surface);
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      .printing-image-section {
+        width: 100%;
+        max-width: none;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+        background: transparent;
+      }
+
+      .printing-gap-band {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        min-height: 1000px;
+        padding: 32px;
+        box-sizing: border-box;
+      }
+
+      .printing-gap-card {
+        width: min(520px, 100%);
+        min-height: 400px;
+        height: auto;
+        padding: 32px;
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+        box-sizing: border-box;
+      }
+
+      .printing-gap-card h2 {
+        margin: 0 0 16px;
+        font-size: clamp(1.3rem, 2.5vw, 2rem);
+      }
+
+      .printing-gap-card p {
+        margin: 0;
+        font-family: var(--font-text);
+        font-size: 14px;
+        line-height: 1.7;
+        color: #333333;
+      }
+
+      .site-header .header-inner {
+        max-width: none;
+      }
+
+      .printing-image-frame {
+        position: relative;
+      }
+
+      .printing-intro-card-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 46px;
+        width: calc(100% - 92px);
+        max-width: 1120px;
+        margin: 47px auto 0;
+      }
+
+      .printing-intro-card {
+        min-height: 360px;
+        padding: 28px;
+        background: var(--printing-surface);
+        border-radius: 18px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+        box-sizing: border-box;
+      }
+
+      .printing-intro-card--image {
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .printing-intro-card--feature {
+        padding: 0;
+        background: var(--printing-surface);
+      }
+
+      .printing-intro-card--feature-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 46px;
+        width: 100%;
+        min-height: 360px;
+        background: transparent;
+      }
+
+      .printing-intro-small-card {
+        min-width: 0;
+        padding: 16px;
+        background: var(--printing-surface);
+        border-radius: 18px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+        box-sizing: border-box;
+      }
+
+      .printing-intro-small-card-image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        margin-bottom: 18px;
+        background: #d8d8d8;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .printing-intro-small-card h3 {
+        margin: 0 0 16px;
+        font-size: 20px;
+        line-height: 1.1;
+      }
+
+      .printing-intro-small-card p {
+        margin: 0;
+        font-family: var(--font-text);
+        font-size: 11px;
+        line-height: 1.7;
+        color: #333333;
+      }
+
+      .printing-intro-card--image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .printing-intro-card h2 {
+        margin: 0;
+        font-size: clamp(1.1rem, 2vw, 2rem);
+      }
+
+      .printing-intro-card-copy {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+
+      .printing-intro-card-copy p {
+        margin: 0;
+        font-family: var(--font-text);
+        font-size: 12px;
+        line-height: 1.75;
+        color: #333333;
+      }
+
+      .printing-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 0;
+      }
+
+      .printing-image-fade-overlay {
+        position: absolute;
+        inset: 0;
+        background: #000000;
+        opacity: 1;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .printing-image-fade-overlay.is-faded {
+        animation: heroFadeOut 2.3s ease-out forwards;
+      }
+
+      @keyframes heroFadeOut {
+        0% {
+          opacity: 1;
+        }
+
+        21.7% {
+          opacity: 1;
+        }
+
+        56.5% {
+          opacity: 0.2;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .printing-image-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(90%, 820px);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .printing-image-overlay .hero-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        font-size: clamp(1.1rem, 2vw, 2rem);
+        line-height: 1.1;
+        padding: 0;
+      }
+
+      .printing-title-line {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.28em;
+      }
+
+      .printing-title-word {
+        display: inline-block;
+        opacity: 1;
+        transform: translateY(0);
+        animation: none;
+      }
+
+      .printing-title-word:nth-child(1) { animation-delay: 0s; }
+      .printing-title-word:nth-child(2) { animation-delay: 0.12s; }
+      .printing-title-word:nth-child(3) { animation-delay: 0.24s; }
+      .printing-title-word:nth-child(4) { animation-delay: 0.36s; }
+      .printing-title-word:nth-child(5) { animation-delay: 0.48s; }
+      .printing-title-word:nth-child(6) { animation-delay: 0.6s; }
+
+      .printing-feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 250px);
+        justify-content: center;
+        gap: 47px;
+        width: 844px;
+        max-width: 100%;
+        margin: 47px auto 0;
+        padding: 0 0;
+      }
+
+      .printing-services-title {
+        margin: 0;
+        font-size: clamp(1.1rem, 2vw, 2rem);
+      }
+
+      .printing-services-title-card {
+        width: 100%;
+        margin: 0 auto;
+        padding: 28px 28px 24px;
+        background: var(--printing-surface);
+        border-radius: 0;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.35);
+        box-sizing: border-box;
+      }
+
+      .printing-services-title-card--works {
+        margin-bottom: 47px;
+      }
+
+      .printing-feature-reveal {
+        display: none;
+        margin-top: 47px;
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+
+      .printing-feature-reveal.is-open {
+        display: block;
+        animation: revealCardsIn 0.35s ease-out forwards;
+      }
+
+      @keyframes revealCardsIn {
+        from {
+          opacity: 0;
+          transform: translateY(-16px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .printing-about .home-about-content {
+        max-width: 1120px;
+        width: min(1120px, 100%);
+        margin: 0 auto;
+      }
+
+      .printing-about .home-about-content > .printing-feature-grid {
+        margin-top: 47px;
+      }
+
+      .printing-about .home-about-content > .printing-feature-card-wide {
+        margin-top: 47px;
+      }
+
+      .printing-about .home-about-content > .printing-services-title-card--works + .printing-feature-card-wide {
+        margin-top: 0;
+      }
+
+      .printing-about .home-about-content > .printing-feature-card-wide:first-of-type {
+        margin-top: 0;
+      }
+
+      .printing-about .about-body {
+        background: var(--printing-surface);
+        padding-top: 47px;
+      }
+
+      .printing-about .container {
+        background: var(--printing-surface);
+      }
+
+      .site-header.is-scrolled {
+        background: #ffffff;
+      }
+
+      .printing-about .about-heading {
+        width: 100%;
+        margin: 0 0 12px;
+      }
+
+      .printing-feature-card {
+        display: block;
+        width: 250px;
+        height: 360px;
+        max-width: 100%;
+        background: #ffffff;
+        border: none;
+        border-radius: 18px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        overflow: hidden;
+        transition: none;
+        cursor: default;
+        box-sizing: border-box;
+      }
+
+      .printing-feature-card:focus-within {
+        background: #ffffff;
+      }
+
+      .printing-feature-card.is-expanded {
+        background: #ffffff;
+      }
+
+      .printing-feature-card:focus-within .printing-feature-card-title,
+      .printing-feature-card:focus-within .printing-feature-card-text,
+      .printing-feature-card:focus-within .printing-feature-card-meta,
+      .printing-feature-card:focus-within .printing-feature-card-media--placeholder,
+      .printing-feature-card.is-expanded .printing-feature-card-title,
+      .printing-feature-card.is-expanded .printing-feature-card-text,
+      .printing-feature-card.is-expanded .printing-feature-card-meta,
+      .printing-feature-card.is-expanded .printing-feature-card-media--placeholder {
+        color: #000000;
+      }
+
+      .printing-feature-card.printing-feature-card-wide {
+        border-radius: 0;
+      }
+
+      .printing-feature-card.printing-feature-card-wide-rounded {
+        border-radius: 18px;
+        height: 428px;
+        position: relative;
+      }
+
+      .printing-feature-card.printing-feature-card-wide-rounded--inverted {
+        background: #ffffff;
+      }
+
+      .printing-feature-card-wide-rounded--inverted .printing-feature-card-title,
+      .printing-feature-card-wide-rounded--inverted .printing-feature-card-text {
+        color: #000000;
+      }
+
+      .printing-feature-card-wide-rounded--inverted .printing-feature-card-image-placeholder,
+      .printing-feature-card-wide-rounded--custom .printing-feature-card-image-placeholder {
+        position: absolute;
+        top: 36px;
+        right: 36px;
+        display: block;
+        width: 356px;
+        height: 356px;
+        background: #d8d8d8;
+        border: 1px solid #e6e6e6;
+        border-radius: 10px;
+        box-sizing: border-box;
+        object-fit: cover;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-inner {
+        padding: 18px;
+      }
+
+      .printing-feature-card-wide {
+        display: block;
+        width: 100%;
+        max-width: 1120px;
+        height: 420px;
+        margin: 47px auto 0;
+        background: #ffffff;
+        border: none;
+        border-radius: 0;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+        overflow: hidden;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts {
+        width: 300px;
+        max-width: 300px;
+        flex: 0 0 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder {
+        width: 558px;
+        max-width: 558px;
+        height: 278px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0;
+        background: var(--printing-surface);
+        border: 1px solid #e6e6e6;
+        border-radius: 14px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        overflow: visible;
+        transform: translateX(-140px);
+      }
+      .printing-process-cards-frame > .printing-feature-card:first-of-type {
+        height: 348px;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder::after {
+        content: "1";
+        position: absolute;
+        top: -18px;
+        right: -18px;
+        z-index: 2;
+        display: grid;
+        width: 72px;
+        height: 72px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--printing-surface);
+        border: 2px solid #000000;
+        color: #000000;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .printing-process-square {
+        position: absolute;
+        z-index: 2;
+        width: calc(70px - 2px);
+        height: calc(70px - 2px);
+        background: #C7C3C1;
+        cursor: grab;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .printing-process-square:active,
+      .printing-process-square.is-dragging {
+        cursor: grabbing;
+      }
+
+      .printing-process-square--left {
+        top: 70px;
+        left: calc(100% + 70px + 2px);
+      }
+
+      .printing-process-square--right-top {
+        top: 0;
+        left: calc(100% + 210px + 2px);
+      }
+
+      .printing-process-square--right-middle {
+        top: 140px;
+        left: calc(100% + 280px + 2px);
+      }
+
+      .printing-process-square--right-bottom {
+        top: 210px;
+        left: calc(100% + 210px + 2px);
+      }
+
+      .printing-process-pattern {
+        position: absolute;
+        top: 70px;
+        left: calc(100% + 70px + 2px);
+        z-index: 3;
+        display: block;
+        width: 68px;
+        height: 68px;
+        pointer-events: none;
+      }
+
+      .printing-process-pattern--second {
+        top: 770px;
+        left: calc(100% + 140px + 2px);
+        width: 68px;
+        height: 68px;
+      }
+
+      .printing-process-pattern--third {
+        top: 700px;
+        left: calc(100% + 140px + 2px);
+      }
+
+      .printing-process-pattern--fourth {
+        top: 649px;
+        left: calc(100% + 140px + 2px);
+      }
+
+      .printing-marker-pattern {
+        position: absolute;
+        top: 0;
+        left: calc(100% + 70px + 2px);
+        z-index: 10001;
+        display: block;
+        width: 193px;
+        height: 68px;
+        pointer-events: none;
+      }
+
+      .printing-marker-pattern--second {
+        top: 0;
+        left: calc(100% + 70px + 193px + 70px + 18px - 140px + 2px);
+        z-index: 4;
+        width: 68px;
+        height: 68px;
+        cursor: grab;
+        pointer-events: auto;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .printing-marker-pattern--second:active,
+      .printing-marker-pattern--second.is-dragging {
+        cursor: grabbing;
+      }
+
+      .printing-marker-pattern--third {
+        top: 104px;
+        left: calc(100% + 93px + 2px);
+        z-index: 10001;
+        width: 225px;
+        height: 34px;
+      }
+
+      .printing-marker-pattern--fourth {
+        top: 104px;
+        left: calc(100% + 93px + 225px - 38px + 2px);
+        z-index: 4;
+        width: 68px;
+        height: 34px;
+        cursor: grab;
+        pointer-events: auto;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .printing-marker-pattern--fifth {
+        top: 104px;
+        left: calc(100% + 93px + 225px - 36px - 212px + 2px);
+        z-index: 4;
+        width: 68px;
+        height: 34px;
+        transform: scaleX(-1);
+        cursor: grab;
+        pointer-events: auto;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .printing-marker-pattern--marker5 {
+        top: calc(104px + 70px + 70px);
+        left: calc(100% + 93px + 2px - 23px);
+        z-index: 1;
+        width: 278px;
+        height: 34px;
+        pointer-events: none;
+      }
+
+      .printing-marker-pattern--pencil {
+        top: calc(104px + 70px + 5px);
+        left: calc(100% + 93px + 2px - 23px);
+        z-index: 1;
+        width: 278px;
+        height: 25px;
+        pointer-events: none;
+      }
+
+      .printing-marker-pattern--fourth:active,
+      .printing-marker-pattern--fourth.is-dragging,
+      .printing-marker-pattern--fifth:active,
+      .printing-marker-pattern--fifth.is-dragging {
+        cursor: grabbing;
+      }
+
+      .printing-process-arrows {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        pointer-events: none;
+      }
+
+      .printing-process-arrows line {
+        stroke: #8A7E7A;
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder.printing-feature-card-wide--step-two::after {
+        content: "2";
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder.printing-feature-card-wide--step-three::after {
+        content: "3";
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder.printing-feature-card-wide--step-four::after {
+        content: "4";
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder + .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder {
+        margin-top: 142px;
+      }
+
+      .printing-services-title-card + .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder {
+        margin-top: 100px;
+      }
+
+      .printing-process-cards-frame {
+        position: relative;
+        width: calc(100vw - 72px);
+        margin-left: calc((100% - 100vw + 72px) / 2);
+        margin-top: 36px;
+        padding: 142px 0 142px;
+        border: none;
+        border-right: 1px solid #000000;
+        border-left: 1px solid #000000;
+        box-sizing: border-box;
+        background-image:
+          linear-gradient(to right, transparent 34px, #E6E2DF 34px, #E6E2DF 36px, transparent 36px),
+          linear-gradient(to bottom, transparent 34px, #E6E2DF 34px, #E6E2DF 36px, transparent 36px);
+        background-size: 70px 70px;
+        background-position: calc(50% - 280px) 106px;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide--parts-placeholder + .printing-services-title-card--works {
+        margin-top: 100px;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide-rounded.printing-feature-card-wide--parts-placeholder .printing-feature-card-inner {
+        width: 100%;
+        height: auto;
+        max-width: none;
+        box-sizing: border-box;
+        padding: 36px;
+      }
+
+      .printing-feature-card-wide .printing-feature-card-inner {
+        padding: 0;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide-rounded .printing-feature-card-inner {
+        width: calc(100% - 410px);
+        padding: 18px;
+        max-width: none;
+        box-sizing: border-box;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide-rounded.printing-feature-card-wide-rounded--parts .printing-feature-card-inner {
+        width: calc(100% - 36px);
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-inner > .printing-feature-card-title {
+        margin-left: 18px;
+        margin-top: 18px;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-inner > .printing-feature-card-text {
+        margin-left: 18px;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide-rounded.printing-feature-card-wide--parts-placeholder .printing-feature-card-inner > .printing-feature-card-title,
+      .printing-feature-card-wide.printing-feature-card-wide-rounded.printing-feature-card-wide--parts-placeholder .printing-feature-card-inner > .printing-feature-card-text {
+        margin-left: 0;
+      }
+
+      .printing-feature-card-wide.printing-feature-card-wide-rounded.printing-feature-card-wide--parts-placeholder .printing-feature-card-inner > .printing-feature-card-title {
+        margin-top: 0;
+      }
+
+      .printing-process-cards-frame > .printing-feature-card .printing-feature-card-title {
+        margin-bottom: 36px;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-mini-list {
+        display: grid;
+        grid-template-rows: repeat(2, 108px);
+        gap: 18px;
+        width: calc(100% - 18px);
+        flex: 0 0 auto;
+        min-height: 0;
+        margin-top: auto;
+      }
+
+      .printing-feature-card-wide-rounded--flexi .printing-feature-card-mini-list {
+        grid-template-rows: repeat(2, 108px);
+      }
+
+      .printing-feature-card-wide-rounded--flexi > .printing-feature-card-inner > .printing-feature-card-text {
+        padding-bottom: 18px;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-mini {
+        display: flex;
+        align-items: center;
+        position: relative;
+        top: -18px;
+        left: 18px;
+        gap: 18px;
+        width: 100%;
+        min-height: 108px;
+        padding: 18px;
+        padding-left: 18px;
+        background: var(--printing-surface);
+        border: 1px solid #e6e6e6;
+        border-radius: 14px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        box-sizing: border-box;
+      }
+
+      .printing-feature-card-wide-rounded--product .printing-feature-card-mini {
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        z-index: 1;
+      }
+
+      .printing-feature-card-wide-rounded--inverted .printing-feature-card-mini {
+        background: #ffffff;
+        border-color: #e6e6e6;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      }
+
+      .printing-feature-card-wide-rounded--inverted .printing-feature-card-mini .printing-feature-card-title,
+      .printing-feature-card-wide-rounded--inverted .printing-feature-card-mini .printing-feature-card-text {
+        color: #000000;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-mini-image {
+        display: block;
+        width: 72px;
+        height: 72px;
+        flex: 0 0 72px;
+        background: #bcbcbc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        object-fit: cover;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-mini-copy {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-mini-copy .printing-feature-card-title {
+        margin-bottom: 8px;
+        font-size: 18px;
+        line-height: 1.15;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-mini-copy .printing-feature-card-text {
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-side-image {
+        position: absolute;
+        top: 36px;
+        left: calc(100% - 392px);
+        display: block;
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        background: #d8d8d8;
+        border: 1px solid #e6e6e6;
+        box-sizing: border-box;
+        object-fit: cover;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .printing-feature-card-wide-rounded .printing-feature-card-side-image--bottom-left {
+        top: auto;
+        right: 36px;
+        bottom: 36px;
+        left: auto;
+        border-radius: 10px;
+      }
+
+      .printing-feature-card-wide-rounded--product .printing-feature-card-side-image {
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        z-index: 1;
+      }
+
+      .printing-feature-card-wide-rounded--product {
+        overflow: visible;
+      }
+
+      .printing-feature-card-wide-rounded--scroll-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      }
+
+      .printing-feature-card-wide-rounded--scroll-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .printing-feature-card-image--scroll-fade {
+        opacity: 1;
+      }
+
+      .printing-feature-card-image--scroll-fade.is-visible {
+        opacity: 1;
+      }
+
+      .printing-feature-card-wide-rounded--product .printing-feature-card-side-image--mirrored-copy {
+        top: auto;
+        right: auto;
+        bottom: 36px;
+        left: calc(100% - 548px);
+        transform: scaleX(-1);
+      }
+
+      .printing-feature-card-wide-rounded--product .printing-feature-card-side-image--laputa-copy {
+        top: auto;
+        right: auto;
+        bottom: 36px;
+        left: 272px;
+      }
+
+      .printing-feature-card-wide-rounded--custom .printing-feature-card-side-image--laputa-copy {
+        width: 420px;
+        left: 272px;
+      }
+
+      .printing-feature-card-wide-rounded--product .printing-feature-card-side-image--ny12-copy {
+        top: auto;
+        right: auto;
+        bottom: 36px;
+        left: 36px;
+      }
+
+      .printing-feature-card-wide-rounded--custom .printing-feature-card-side-image--middle-placeholder {
+        top: auto;
+        right: auto;
+        bottom: 36px;
+        left: 272px;
+        width: 490px;
+        max-width: 490px;
+        height: 280px;
+      }
+
+      .printing-feature-card-wide-rounded--custom .printing-feature-card-side-image--right-large {
+        top: auto;
+        right: 36px;
+        bottom: 36px;
+        left: auto;
+        width: 356px;
+        height: 356px;
+        z-index: 1;
+      }
+
+      .printing-feature-card-wide--step-two .printing-marker-pattern:not(.printing-marker-pattern--second):not(.printing-marker-pattern--fourth):not(.printing-marker-pattern--fifth),
+      .printing-feature-card-wide--step-two .printing-process-pattern {
+        z-index: 1;
+      }
+
+      .printing-feature-card-wide--step-two .printing-marker-pattern--second,
+      .printing-feature-card-wide--step-two .printing-marker-pattern--fourth,
+      .printing-feature-card-wide--step-two .printing-marker-pattern--fifth {
+        z-index: 10;
+      }
+
+      .printing-feature-card-wide--step-two .printing-marker-pattern--second.is-dragging,
+      .printing-feature-card-wide--step-two .printing-marker-pattern--fourth.is-dragging,
+      .printing-feature-card-wide--step-two .printing-marker-pattern--fifth.is-dragging {
+        z-index: 100;
+      }
+
+      .printing-feature-card-inner--image-only {
+        padding: 0;
+        position: relative;
+      }
+
+      .printing-feature-card-wide .printing-feature-card-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .printing-feature-card-inner--image-only .printing-feature-card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .printing-feature-card--ido .printing-feature-card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .printing-feature-card-image-caption {
+        position: absolute;
+        top: 36px;
+        left: 36px;
+        width: 25%;
+        box-sizing: border-box;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        pointer-events: none;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+      }
+
+      .printing-feature-card-image-caption h3,
+      .printing-feature-card-image-caption p {
+        margin: 0;
+        color: #ffffff;
+      }
+
+      .printing-feature-card-image-caption h3 {
+        font-size: var(--font-size-h3);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .printing-feature-card-image-caption p {
+        font-size: 12px;
+        line-height: 1.4;
+        opacity: 0.95;
+      }
+
+      .printing-feature-card-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        padding: 18px;
+      }
+
+      .printing-feature-card-title,
+      .printing-feature-card-text,
+      .printing-feature-card-meta {
+        margin: 0;
+      }
+
+      .printing-feature-card-title {
+        margin-bottom: 12px;
+      }
+
+      .printing-feature-card-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 140px;
+        margin-top: auto;
+        border-radius: 12px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e8e8e8 0%, #d6d6d6 100%);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .printing-feature-card-media--placeholder {
+        color: #555555;
+        font-family: var(--font-text);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .printing-feature-card-inline-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .printing-feature-card-text {
+        font-family: var(--font-text);
+        font-size: 12px;
+        line-height: 1.75;
+        color: #333333;
+        text-align: left;
+      }
+
+      .printing-process-cards-frame > .printing-feature-card:first-of-type .printing-feature-card-text {
+        font-size: 12px;
+        line-height: 1.75;
+        margin: 0;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .printing-process-cards-frame > .printing-feature-card:first-of-type .printing-feature-card-text li {
+        font-size: 12px;
+        line-height: 1.75;
+      }
+
+      .printing-feature-card-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 12px;
+        align-content: flex-end;
+      }
+
+      .printing-feature-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: #28374F;
+        color: #ffffff;
+        font-family: var(--font-text);
+        font-size: 11px;
+        line-height: 1.2;
+      }
+
+      @keyframes printingTitleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .printing-feature-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          width: min(100%, 760px);
+        }
+
+      }
+
+      @media (max-width: 900px) {
+        .printing-image-section {
+          margin-top: 0;
+          padding: 0;
+        }
+
+        .printing-feature-grid {
+          grid-template-columns: 1fr;
+          width: 100%;
+        }
+
+        .printing-feature-card,
+        .printing-feature-card-wide {
+          width: 100%;
+          height: auto;
+          min-height: 320px;
+        }
+
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top">Lorem</a>
+        <nav class="main-nav" aria-label="Lorem ipsum">
+          <a href="#top">Lorem ipsum</a>
+          <a href="#top">Lorem ipsum</a>
+          <button class="menu-btn" aria-label="Lorem ipsum">
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="printing-image-section" aria-label="Lorem ipsum">
+      <div class="printing-image-frame">
+        <img src="images/kep2.jpg" class="printing-image" alt="Lorem ipsum" />
+        <div class="printing-image-fade-overlay" aria-hidden="true"></div>
+        <div class="printing-image-overlay">
+          <h1 class="hero-title">
+            <span class="printing-title-line">
+              <span class="printing-title-word">Lorem ipsum</span>
+            </span>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <div class="printing-gap-band">
+      <article class="printing-gap-card">
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed lorem posuere volutpat. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec.</p>
+      </article>
+      <article class="printing-gap-card">
+        <h2>1 lorem</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed lorem posuere volutpat. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec.</p>
+      </article>
+      <article class="printing-gap-card">
+        <h2>2lore</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed lorem posuere volutpat. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec.</p>
+      </article>
+      <article class="printing-gap-card">
+        <h2>3 lorem</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo sed lorem posuere volutpat. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec.</p>
+      </article>
+    </div>
+
+    <footer class="site-footer" id="contact">
+      <div class="container footer-grid">
+        <div class="footer-inner">
+          <h2 class="footer-title">Lorem ipsum</h2>
+          <p>Lorem ipsum</p>
+          <p class="contact-email-row">Lorem ipsum: <span class="contact-email-text">Lorem ipsum</span>
+            <button class="copy-email-btn" type="button" data-copy-email="info@meteor.hu" aria-label="Lorem ipsum">
+              <svg class="copy-email-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 9h11v11H9z" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <path d="M4 4h11v11H4z" fill="none" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </button>
+          </p>
+        </div>
+
+        <form class="quick-mail-form" data-quick-mail-form data-mail-to="info@meteor.hu">
+          <label class="quick-mail-label" for="quick-first-name-printing">Lorem ipsum</label>
+          <div class="quick-mail-name-row">
+            <div class="quick-mail-name-field">
+              <label class="quick-mail-mini-label" for="quick-first-name-printing">Lorem ipsum</label>
+              <input class="quick-mail-input" id="quick-first-name-printing" name="firstName" type="text" required />
+            </div>
+            <div class="quick-mail-name-field">
+              <label class="quick-mail-mini-label" for="quick-last-name-printing">Lorem ipsum</label>
+              <input class="quick-mail-input" id="quick-last-name-printing" name="lastName" type="text" required />
+            </div>
+          </div>
+
+          <label class="quick-mail-label" for="quick-email-printing">Lorem ipsum</label>
+          <input class="quick-mail-input" id="quick-email-printing" name="email" type="email" required />
+
+          <label class="quick-mail-label" for="quick-message-printing">Lorem ipsum</label>
+          <textarea class="quick-mail-input quick-mail-textarea" id="quick-message-printing" name="message" required></textarea>
+
+          <button class="quick-mail-submit" type="submit">Lorem ipsum</button>
+          <p class="quick-mail-note">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </form>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var forms = document.querySelectorAll('[data-quick-mail-form]');
+        forms.forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var mailTo = form.getAttribute('data-mail-to');
+            var firstName = form.elements.firstName.value.trim();
+            var lastName = form.elements.lastName.value.trim();
+            var name = [lastName, firstName].filter(Boolean).join(' ');
+            var email = form.elements.email.value.trim();
+            var message = form.elements.message.value.trim();
+            var subject = 'Lorem ipsum - ' + name;
+            var body = ['Lorem ipsum: ' + name, 'Lorem ipsum: ' + email, '', 'Lorem ipsum:', message].join('\n');
+
+            window.location.href = 'mailto:' + mailTo + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          });
+        });
+      })();
+
+      (function () {
+        var buttons = document.querySelectorAll('[data-copy-email]');
+        buttons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            var email = button.getAttribute('data-copy-email');
+            if (!email || !navigator.clipboard) return;
+            navigator.clipboard.writeText(email).then(function () {
+              button.classList.add('is-copied');
+              button.setAttribute('aria-label', 'Lorem ipsum');
+            });
+          });
+        });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var header = document.querySelector('.site-header');
+        if (!header) return;
+
+        var thresholdPx = 114;
+
+        function syncHeaderState() {
+          header.classList.toggle('is-scrolled', window.scrollY >= thresholdPx);
+        }
+
+        syncHeaderState();
+        window.addEventListener('scroll', syncHeaderState, { passive: true });
+      })();
+
+      (function () {
+        var overlay = document.querySelector('.printing-image-fade-overlay');
+        if (!overlay) return;
+
+        window.addEventListener('load', function () {
+          requestAnimationFrame(function () {
+            overlay.classList.add('is-faded');
+          });
+        });
+      })();
+
+      (function () {
+        var triggers = document.querySelectorAll('[data-reveal-target]');
+
+        triggers.forEach(function (trigger) {
+          var targetId = trigger.getAttribute('data-reveal-target');
+          var reveal = document.getElementById(targetId);
+          if (!reveal) return;
+
+          function toggleReveal() {
+            var isOpen = reveal.classList.contains('is-open');
+
+            triggers.forEach(function (otherTrigger) {
+              var otherReveal = document.getElementById(otherTrigger.getAttribute('data-reveal-target'));
+              if (!otherReveal) return;
+              otherReveal.classList.remove('is-open');
+              otherReveal.setAttribute('aria-hidden', 'true');
+              otherTrigger.classList.remove('is-expanded');
+            });
+
+            reveal.classList.toggle('is-open', !isOpen);
+            reveal.setAttribute('aria-hidden', String(isOpen));
+            trigger.classList.toggle('is-expanded', !isOpen);
+          }
+
+          trigger.addEventListener('click', toggleReveal);
+          trigger.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              toggleReveal();
+            }
+          });
+        });
+      })();
+
+      (function () {
+        var cards = document.querySelectorAll('.printing-feature-card-wide-rounded--scroll-reveal');
+        if (!cards.length) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          cards.forEach(function (card) {
+            card.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries, currentObserver) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            currentObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.16 });
+
+        cards.forEach(function (card) {
+          observer.observe(card);
+        });
+      })();
+
+      (function () {
+        var images = document.querySelectorAll('.printing-feature-card-image--scroll-fade');
+        if (!images.length) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          images.forEach(function (image) {
+            image.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries, currentObserver) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            currentObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.2 });
+
+        images.forEach(function (image) {
+          observer.observe(image);
+        });
+      })();
+
+      (function () {
+        var frame = document.querySelector('.printing-process-cards-frame');
+        var squares = document.querySelectorAll('.printing-process-square, .printing-marker-pattern--second, .printing-marker-pattern--fourth, .printing-marker-pattern--fifth');
+        var arrows = document.querySelector('.printing-process-arrows');
+        if (!frame || !squares.length || !arrows) return;
+
+        var leftSquare = frame.querySelector('.printing-process-square--left');
+        var targetSquares = [
+          frame.querySelector('.printing-process-square--right-top'),
+          frame.querySelector('.printing-process-square--right-middle'),
+          frame.querySelector('.printing-process-square--right-bottom')
+        ];
+        var arrowLines = [
+          arrows.querySelector('[data-arrow="top"]'),
+          arrows.querySelector('[data-arrow="middle"]'),
+          arrows.querySelector('[data-arrow="bottom"]')
+        ];
+
+        function updateArrows() {
+          var frameRect = frame.getBoundingClientRect();
+          arrows.setAttribute('viewBox', '0 0 ' + frameRect.width + ' ' + frameRect.height);
+          var leftRect = leftSquare.getBoundingClientRect();
+          var startX = leftRect.right - frameRect.left;
+          var startY = leftRect.top + leftRect.height / 2 - frameRect.top;
+
+          targetSquares.forEach(function (targetSquare, index) {
+            var targetRect = targetSquare.getBoundingClientRect();
+            arrowLines[index].setAttribute('x1', startX);
+            arrowLines[index].setAttribute('y1', startY);
+            arrowLines[index].setAttribute('x2', targetRect.left - frameRect.left);
+            arrowLines[index].setAttribute('y2', targetRect.top + targetRect.height / 2 - frameRect.top);
+          });
+        }
+
+        var gridStep = 70;
+
+        squares.forEach(function (square) {
+          var dragStartX = 0;
+          var dragStartY = 0;
+          var dragOriginX = 0;
+          var dragOriginY = 0;
+          var offsetX = 0;
+          var offsetY = 0;
+          var isMirrored = square.classList.contains('printing-marker-pattern--fifth');
+
+          function applyPosition() {
+            square.style.transform = 'translate(' + offsetX + 'px, ' + offsetY + 'px)' + (isMirrored ? ' scaleX(-1)' : '');
+            updateArrows();
+          }
+
+          square.addEventListener('pointerdown', function (event) {
+            event.preventDefault();
+            dragStartX = event.clientX;
+            dragStartY = event.clientY;
+            dragOriginX = offsetX;
+            dragOriginY = offsetY;
+            square.classList.add('is-dragging');
+            square.setPointerCapture(event.pointerId);
+          });
+
+          square.addEventListener('pointermove', function (event) {
+            if (!square.hasPointerCapture(event.pointerId)) return;
+
+            offsetX = dragOriginX + event.clientX - dragStartX;
+            offsetY = dragOriginY + event.clientY - dragStartY;
+            applyPosition();
+          });
+
+          function finishDrag(event) {
+            if (square.hasPointerCapture(event.pointerId)) {
+              square.releasePointerCapture(event.pointerId);
+            }
+            offsetX = Math.round(offsetX / gridStep) * gridStep;
+            offsetY = Math.round(offsetY / gridStep) * gridStep;
+            applyPosition();
+            square.classList.remove('is-dragging');
+          }
+
+          square.addEventListener('pointerup', finishDrag);
+          square.addEventListener('pointercancel', finishDrag);
+
+          square.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowUp') {
+              offsetY -= gridStep;
+            } else if (event.key === 'ArrowDown') {
+              offsetY += gridStep;
+            } else if (event.key === 'ArrowLeft') {
+              offsetX -= gridStep;
+            } else if (event.key === 'ArrowRight') {
+              offsetX += gridStep;
+            } else {
+              return;
+            }
+
+            event.preventDefault();
+            applyPosition();
+          });
+        });
+
+        updateArrows();
+        window.addEventListener('resize', updateArrows);
+        window.addEventListener('scroll', updateArrows, { passive: true });
+      })();
+
+    </script>
+  </body>
+</html>
